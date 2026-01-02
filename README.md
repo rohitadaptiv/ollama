@@ -31,5 +31,34 @@ Standalone Ollama instance configuration for EC2.
      }
      ```
 
-## Security Note
-Ensure AWS Security Group allows Inbound TCP traffic on port `11434` from your IP (or 0.0.0.0/0 for public access).
+## Multi-Model Support
+
+To use the `client_tester.py` effectively, pull the supported models on your EC2 server:
+
+```bash
+# 1. Main Model
+docker exec -it ollama_standalone ollama pull llama3.1
+
+# 2. Alternative Model (Mistral)
+docker exec -it ollama_standalone ollama pull mistral
+```
+
+## Testing with Python Client
+
+You can run `client_tester.py` from your local machine (if you clone this repo locally) or from anywhere.
+
+1. **Install dependencies:**
+   ```bash
+   pip install requests
+   ```
+
+2. **Run Tester:**
+   ```bash
+   python client_tester.py
+   ```
+
+3. **Follow Prompts:**
+   - Enter your EC2 Public URL (e.g., `http://13.23.45.67:11434`).
+   - Choose Model (Llama 3.1 or Mistral).
+   - Chat!
+
