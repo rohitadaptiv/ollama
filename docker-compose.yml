@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama_ standalone
+    ports:
+      # Expose API to host (and internet, if Security Group allows)
+      - "11434:11434"
+    volumes:
+      - ollama_storage:/root/.ollama
+    restart: always
+    environment:
+      # Bind to all interfaces to allow external access
+      - OLLAMA_HOST=0.0.0.0
+
+volumes:
+  ollama_storage:
