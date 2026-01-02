@@ -12,7 +12,7 @@ MODELS = {
 
 def check_server(base_url):
     try:
-        response = requests.get(base_url)
+        response = requests.get(base_url, timeout=5)
         if response.status_code == 200:
             print(f"✅ Served is reachable at {base_url}")
             return True
@@ -29,7 +29,7 @@ def pull_verification(base_url, model_name):
     # Check if model exists, if not, try to pull (optional, might timeout on client, but good to know)
     print(f"🔍 Checking if model '{model_name}' is available on server...")
     try:
-        response = requests.get(f"{base_url}/api/tags")
+        response = requests.get(f"{base_url}/api/tags", timeout=10)
         if response.status_code == 200:
             models = [m['name'] for m in response.json()['models']]
             # Check for partial match (e.g. llama3.1:latest)
@@ -58,7 +58,7 @@ def run_chat(base_url, model):
         
         try:
             print(f"{model}: ", end="", flush=True)
-            with requests.post(f"{base_url}/api/chat", json=payload, stream=True) as response:
+            with requests.post(f"{base_url}/api/chat", json=payload, stream=True, timeout=300) as response:
                 response.raise_for_status()
                 for line in response.iter_lines():
                     if line:
