@@ -3,7 +3,7 @@ version: '3.8'
 services:
   ollama:
     image: ollama/ollama:latest
-    container_name: ollama_ standalone
+    container_name: ollama_standalone
     ports:
       # Expose API to host (and internet, if Security Group allows)
       - "11434:11434"
