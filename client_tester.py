@@ -7,7 +7,8 @@ DEFAULT_HOST = "http://localhost:11434"
 
 MODELS = {
     "1": "llama3.1",
-    "2": "mistral" 
+    "2": "mistral",
+    "3": "deepseek-r1:1.5b" 
 }
 
 def check_server(base_url):
@@ -58,7 +59,7 @@ def run_chat(base_url, model):
         
         try:
             print(f"{model}: ", end="", flush=True)
-            with requests.post(f"{base_url}/api/chat", json=payload, stream=True, timeout=300) as response:
+            with requests.post(f"{base_url}/api/chat", json=payload, stream=True, timeout=60) as response:
                 response.raise_for_status()
                 for line in response.iter_lines():
                     if line:
@@ -88,6 +89,7 @@ def main():
     print("\nSelect Model:")
     print("1. Llama 3.1 (Robust, Standard)")
     print("2. Mistral (Fast, High Quality)")
+    print("3. DeepSeek R1 1.5B (Lightweight, Specialized)")
     
     choice = input("Choice (1/2): ").strip()
     model = MODELS.get(choice, "llama3.1")

@@ -67,6 +67,9 @@ docker exec -it ollama_standalone ollama pull llama3.1
 
 # 2. Alternative Model (Mistral)
 docker exec -it ollama_standalone ollama pull mistral
+
+# 3. DeepSeek R1 1.5B
+docker exec -it ollama_standalone ollama pull deepseek-r1:1.5b
 ```
 
 ## Testing with Python Client
