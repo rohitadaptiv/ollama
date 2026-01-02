@@ -20,13 +20,13 @@ Standalone Ollama instance configuration for EC2.
    ```
 
 4. **Test Remotely (Postman)**
-   - Method: `POST`
-   - URL: `http://<EC2-PUBLIC-IP>:11434/api/generate`
-   - Body:
+   - **Method:** `POST`
+   - **URL:** `http://13.233.233.19:11434/api/generate`
+   - **Body (JSON):**
      ```json
      {
        "model": "llama3.1",
-       "prompt": "Why is the sky blue?",
+       "prompt": "Tell me a joke.",
        "stream": false
      }
      ```
