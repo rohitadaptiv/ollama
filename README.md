@@ -31,6 +31,10 @@ Standalone Ollama instance configuration for EC2.
      }
      ```
 
+   > **Note on Streaming:**
+   > *   `"stream": false`: Returns the **whole answer at once** as a single JSON object. Best for Postman testing and simple scripts.
+   > *   `"stream": true`: Returns the answer **word-by-word** (like ChatGPT). Best for real-time apps but harder to read in Postman.
+
      }
      ```
 
